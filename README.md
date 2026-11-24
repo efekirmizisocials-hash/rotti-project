@@ -1,74 +1,74 @@
-# Rotti: Hayatının tamamı, tek yerde
+# Rotti Planner: planlama modülü
 
-Rotti, planlama, hedefler, finans, sağlık, yemek ve rutinleri tek ekranda toplayan, yapay zekâ destekli bir yaşam yönetimi uygulaması.
+Rotti, planlama, hedefler, finans, sağlık, yemek ve rutinleri tek ekranda toplayan, yapay zekâ destekli bir yaşam yönetimi uygulamasıdır. Bu depo, uygulamanın **planlama modülünü** tek başına çalışan bir demo olarak sunar.
 
-**Canlı uygulama:** https://rotti.life
+**Tam uygulama:** https://rotti.life · Tam uygulamanın kaynak kodu özel (private) bir depoda tutulur.
 
-![Rotti ana sayfa](docs/screenshot.png)
+![Rotti Planner haftalık görünüm](docs/screenshot.png)
 
-> Bu depo, projenin **vitrin** deposudur: tanıtım, ekran görüntüsü ve örnek bir kod dosyası içerir. Uygulamanın tam kaynak kodu özel (private) bir depoda tutulur.
+## Bu demoda neler var?
 
-## Ne yapar?
+- **Bugün:** saat saat zaman çizelgesi, enerji seviyesine göre "sıradaki en iyi görev" önerisi
+- **Hafta, Ay:** haftalık ve aylık takvim görünümleri
+- **Tüm görevler:** sıralanabilir liste
+- **Pano (Kanban):** Yapılacak / Devam ediyor / Bitti sütunları, sürükle-bırak ile taşıma
+- **Tek yapıda üç öğe türü:** görev, alışkanlık, etkinlik
+- Alt görevler, etiketler, projeler, tekrar kuralları, hızlı ekleme çubuğu ve ayrıntılı ekleme paneli
+- Açık ve koyu tema, TR/EN dil düğmesi
 
-- **Planlayıcı:** görev, alışkanlık ve etkinlikler tek yapıda; Kanban, takvim ve zaman çizelgesi görünümleri
-- **Hedefler:** hedef ve ilerleme takibi, hedeften yapay zekâ ile proje planı çıkarma
-- **Finans:** hesaplar, işlemler, bütçe ve harcama dağılımı
-- **Sağlık:** antrenman, ölçüm ve ruh hâli takibi
-- **Yemek:** yemek planı, tarif defteri, yapay zekâ önerileri
-- **Rutinler ve odak modu:** rutin takibi, Pomodoro tarzı odak oturumları
-- **Yapay zekâ ile giriş:** “yarın saat 15’te süt al” gibi serbest yazıyı düzgün bir göreve çevirir
-- **Türkçe ve İngilizce arayüz**, çevrimdışı çalışabilen PWA, Capacitor ile iOS/Android desteği
+## Demo nasıl çalışır?
+
+Hesap, arka uç veya yapay zekâ hizmeti gerektirmeden doğrudan açılır:
+
+- Giriş (auth) yoktur, tek bir sahte demo kullanıcı vardır.
+- Veriler **sahte (mock)** örneklerdir ve yalnızca tarayıcının `localStorage` alanında tutulur. "Demoyu sıfırla" düğmesi örnek verileri geri yükler.
+- Veritabanı, gerçek zamanlı senkronizasyon ve API anahtarı yoktur. Uygulama yalnızca yazı tipleri için Google Fonts'a istek yapar.
+- Yapay zekâ çağrıları sabit/kural tabanlı **mock** cevaplarla değiştirilmiştir (aşağıya bakın).
 
 ## Kullanılan teknolojiler
 
-| Katman | Teknoloji |
-|---|---|
-| Arayüz | React 19, TypeScript, Vite, Tailwind CSS, Framer Motion |
-| Durum yönetimi | Zustand |
-| Grafikler | Recharts, D3 |
-| Veritabanı ve kimlik doğrulama | Supabase (PostgreSQL, Row Level Security) |
-| Yapay zekâ | Google Gemini (`@google/genai`), anahtarlar sunucu tarafında |
-| API katmanı | Supabase Edge Functions, Node.js/Express vekil sunucu |
-| Mobil | Capacitor (iOS, Android), PWA |
-| Test | Vitest, Playwright |
-| Yayın | Vercel |
+| Katman         | Teknoloji                               |
+| -------------- | --------------------------------------- |
+| Arayüz         | React 19, TypeScript, Vite 6            |
+| Stil           | Tailwind CSS 3                          |
+| Durum yönetimi | Zustand                                 |
+| Animasyon      | Framer Motion                           |
+| Bildirimler    | react-hot-toast                         |
+| Veri           | `localStorage` üzerinde yerel mock depo |
 
-## Kurulum (tam proje için)
+## Kurulum
 
-Tam kaynak kod özel depoda olduğu için aşağıdaki adımlar o depo içindir.
+Gereksinimler: Node.js 20.19+ (veya 22.12+)
 
 ```bash
-# 1. Bağımlılıkları kur
 npm install
-
-# 2. Ortam dosyasını oluştur (.env.local, git'e girmez)
-#    İçine şu iki anahtarı yaz:
-#    VITE_SUPABASE_URL=
-#    VITE_SUPABASE_ANON_KEY=
-
-# 3. Uygulamayı başlat (http://localhost:3000)
 npm run dev
 ```
 
-Yapay zekâ çağrıları Supabase Edge Function (`gemini-generate`) üzerinden geçer. Gemini anahtarı (`GEMINI_API_KEY`) tarayıcıya verilmez, Supabase projesinde gizli değişken (secret) olarak tanımlanır.
-
-Gereksinimler: Node.js 20+, bir Supabase projesi, Google AI Studio’dan bir Gemini API anahtarı.
-
-Testler için: `npm run test` (birim), `npm run test:e2e` (uçtan uca).
-
-## Örnek kod
-
-`examples/brainDumpTransformer.ts`: yapay zekânın çıkardığı öğeleri veritabanına girmeden önce doğrulayan saf (yan etkisiz) dönüşüm katmanı. Geçersiz bir değer gelirse güvenli varsayılana düşer. Bu dosya tek başına çalışmaz, projenin tip dosyalarına bağlıdır.
+Uygulama http://localhost:3000 adresinde açılır. Üretim derlemesi için `npm run build` (önce tip denetimi, sonra Vite derlemesi çalışır).
 
 ## Yapay zekâ kullanımı
 
-**Üründe:** Gemini ile doğal dilden görev çıkarma, düşünce dökümünü görev/fikir/hedeflere ayırma, günlük koçluk önerileri, yemek önerileri ve sesli not çözümleme. API anahtarları tarayıcıya verilmez, istekler sunucu üzerinden geçer.
+**Üründe:** Tam uygulamada Google Gemini ile doğal dilden görev çıkarma, görevi alt adımlara bölme ve otomatik zamanlama gibi özellikler kullanılır. İstekler sunucu üzerinden geçer, API anahtarları tarayıcıya verilmez.
 
-**Geliştirmede:** Claude Code (Anthropic) ile kod yazma, refactor ve test üretimi; proje içinde rol bazlı Claude Code ajanları (mimari, frontend, backend, test, güvenlik, denetim). Güvenlik, RLS ve bağımlılık denetimi kapıları ile bu ajan şablonları için Optimus adlı yerel altyapı kullanıldı. Üretilen kod elle gözden geçirilip testlerden geçirildi.
+**Bu demoda:** Gemini yoktur, hiçbir ağ isteği yapılmaz. `src/mocks/aiMock.ts` ve `src/hooks/useAIScheduler.ts` içindeki mock'lar:
 
-## Ekran görüntüsü hakkında
+- Hızlı ekleme: "yarın", "bugün", "acil" gibi birkaç anahtar kelimeyi tanıyan basit kurallar
+- Görevi alt adımlara bölme: her zaman aynı üç örnek alt görev
+- Otomatik zamanlama ("Magic Schedule"): görevleri sıradaki boş saatlere yerleştirir
 
-Yukarıdaki görsel uygulamanın ana sayfasıdır.
+**Geliştirmede:** Claude Code (Anthropic) ile kod yazma, yeniden düzenleme ve test üretimi; proje içinde rol bazlı Claude Code ajanları kullanıldı. Bu demonun hazırlanması (mock katmanı, örnek veri, ekran görüntüsü) de Claude Code ile yapıldı. Üretilen kod elle gözden geçirildi; tam projede birim ve uçtan uca testlerle doğrulanır.
+
+## Proje yapısı
+
+```
+src/
+  components/   Planlayıcı görünümleri (Bugün, Hafta, Ay, Pano), ekleme paneli
+  hooks/        Mock veri hook'ları (localStorage tabanlı)
+  mocks/        Yerel depo, örnek veri (seed) ve yapay zekâ mock'ları
+  store/        Zustand store'ları
+  locales/      Arayüz metinleri (EN, TR)
+```
 
 ## İletişim
 
