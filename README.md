@@ -29,11 +29,6 @@ https://rotti.life
 | --------------------------------------------------- | --------------------------------------- |
 | ![Planlayıcı haftalık görünüm](docs/screenshot.png) | ![Finans genel bakış](docs/finance.png) |
 
-## nasıl çalışır?
-- Giriş (auth) yoktur, tek bir sahte demo kullanıcı vardır.
-- Tüm veriler (görevler, işlemler, bütçeler, abonelikler) **uydurma örneklerdir** ve yalnızca tarayıcının `localStorage` alanında tutulur.
-- Veritabanı, gerçek zamanlı senkronizasyon ve API anahtarı yoktur. Uygulama yalnızca yazı tipleri için Google Fonts'a istek yapar.
-
 ## Kullanılan teknolojiler
 
 | Katman         | Teknoloji                               |
@@ -46,9 +41,6 @@ https://rotti.life
 | Grafikler      | Recharts                                |
 | Bildirimler    | react-hot-toast                         |
 | Veri           | `localStorage` üzerinde yerel mock depo |
-
-
-Uygulama http://localhost:3000 adresinde açılır. Üretim derlemesi için `npm run build` (önce tip denetimi, sonra Vite derlemesi çalışır).
 
 
 
