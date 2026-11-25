@@ -1,12 +1,8 @@
-# Rotti: Dashboard, Planlayıcı ve Finans
+# Rotti: 
 
 Rotti, planlama, hedefler, finans, sağlık, yemek ve rutinleri tek ekranda toplayan, yapay zekâ destekli bir yaşam yönetimi uygulamasıdır. Bu depo, uygulamanın **Dashboard, Planlayıcı ve Finans** modüllerini tek başına çalışan bir demo olarak sunar.
 
-**Tam uygulama:** https://rotti.life · Tam uygulamanın kaynak kodu özel (private) bir depoda tutulur.
-
-![Rotti Dashboard](docs/dashboard.png)
-
-## Bu demoda neler var?
+https://rotti.life 
 
 ### Dashboard
 
@@ -35,14 +31,10 @@ Ayrıca açık ve koyu tema, TR/EN dil düğmesi ve tüm verileri sıfırlayan "
 | --------------------------------------------------- | --------------------------------------- |
 | ![Planlayıcı haftalık görünüm](docs/screenshot.png) | ![Finans genel bakış](docs/finance.png) |
 
-## Demo nasıl çalışır?
-
-Hesap, arka uç veya yapay zekâ hizmeti gerektirmeden doğrudan açılır:
-
+## nasıl çalışır?
 - Giriş (auth) yoktur, tek bir sahte demo kullanıcı vardır.
 - Tüm veriler (görevler, işlemler, bütçeler, abonelikler) **uydurma örneklerdir** ve yalnızca tarayıcının `localStorage` alanında tutulur.
 - Veritabanı, gerçek zamanlı senkronizasyon ve API anahtarı yoktur. Uygulama yalnızca yazı tipleri için Google Fonts'a istek yapar.
-- Yapay zekâ çağrıları sabit/kural tabanlı **mock** cevaplarla değiştirilmiştir (aşağıya bakın).
 
 ## Kullanılan teknolojiler
 
@@ -57,26 +49,10 @@ Hesap, arka uç veya yapay zekâ hizmeti gerektirmeden doğrudan açılır:
 | Bildirimler    | react-hot-toast                         |
 | Veri           | `localStorage` üzerinde yerel mock depo |
 
-## Kurulum
-
-Gereksinimler: Node.js 20.19+ (veya 22.12+)
-
-```bash
-npm install
-npm run dev
-```
 
 Uygulama http://localhost:3000 adresinde açılır. Üretim derlemesi için `npm run build` (önce tip denetimi, sonra Vite derlemesi çalışır).
 
-## Yapay zekâ kullanımı
 
-**Üründe:** Tam uygulamada Google Gemini ile doğal dilden görev çıkarma, görevi alt adımlara bölme ve otomatik zamanlama gibi özellikler kullanılır. İstekler sunucu üzerinden geçer, API anahtarları tarayıcıya verilmez.
-
-**Bu demoda:** Gemini yoktur, hiçbir ağ isteği yapılmaz. `src/mocks/aiMock.ts` ve `src/hooks/useAIScheduler.ts` içindeki mock'lar:
-
-- Hızlı ekleme: "yarın", "bugün", "acil" gibi birkaç anahtar kelimeyi tanıyan basit kurallar
-- Görevi alt adımlara bölme: her zaman aynı üç örnek alt görev
-- Otomatik zamanlama ("Magic Schedule"): görevleri sıradaki boş saatlere yerleştirir
 
 **Geliştirmede:** Claude Code (Anthropic) ile kod yazma, yeniden düzenleme ve test üretimi; proje içinde rol bazlı Claude Code ajanları kullanıldı. Bu demonun hazırlanması (mock katmanı, örnek veri, ekran görüntüleri) de Claude Code ile yapıldı. Üretilen kod elle gözden geçirildi; tam projede birim ve uçtan uca testlerle doğrulanır.
 
