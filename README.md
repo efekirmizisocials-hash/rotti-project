@@ -24,7 +24,6 @@ https://rotti.life
 - Gelir/gider ekleme, kategori bazlı harcama dağılımı, 12 aylık gelir-gider trendi
 - Kategori bazlı aylık bütçeler ve abonelik takibi
 
-Ayrıca açık ve koyu tema, TR/EN dil düğmesi ve tüm verileri sıfırlayan "Demoyu sıfırla" düğmesi vardır.
 
 | Planlayıcı                                          | Finans                                  |
 | --------------------------------------------------- | --------------------------------------- |
