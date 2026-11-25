@@ -1,7 +1,6 @@
 # Rotti: 
 
-Rotti, planlama, hedefler, finans, sağlık, yemek ve rutinleri tek ekranda toplayan, yapay zekâ destekli bir yaşam yönetimi uygulamasıdır. Bu depo, uygulamanın **Dashboard, Planlayıcı ve Finans** modüllerini tek başına çalışan bir demo olarak sunar.
-
+Rotti, planlama, hedefler, finans, sağlık, yemek ve rutinleri tek ekranda toplayan, yapay zekâ destekli bir yaşam yönetimi uygulamasıdır.
 https://rotti.life 
 
 ### Dashboard
