@@ -5,6 +5,7 @@
 import { useCallback } from "react";
 import { create } from "zustand";
 import { readCollection, writeCollection } from "../mocks/localDb";
+import { buildSeedUserStats } from "../mocks/seed";
 
 const STORAGE_KEY = "user-stats";
 
@@ -22,16 +23,10 @@ interface UseUserStatsReturn {
   refetch: () => Promise<void>;
 }
 
-const defaultStats: UserStats = {
-  totalFocusPoints: 0,
-  dailyFocusStreak: 0,
-  lastFocusSessionDate: null,
-};
+const defaultStats = (): UserStats => buildSeedUserStats();
 
-const loadStats = (): UserStats => ({
-  ...defaultStats,
-  ...(readCollection<UserStats>(STORAGE_KEY) ?? {}),
-});
+const loadStats = (): UserStats =>
+  readCollection<UserStats>(STORAGE_KEY) ?? defaultStats();
 
 const useStatsStore = create<{ stats: UserStats }>(() => ({
   stats: loadStats(),
@@ -42,7 +37,7 @@ useStatsStore.subscribe((state, prev) => {
 });
 
 export function resetUserStats(): void {
-  useStatsStore.setState({ stats: defaultStats });
+  useStatsStore.setState({ stats: defaultStats() });
 }
 
 export function useUserStats(): UseUserStatsReturn {

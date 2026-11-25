@@ -26,6 +26,15 @@ function at(dayOffset: number, hour: number, minute = 0): string {
 
 const std = (label: string) => ({ label, type: TagType.STANDARD });
 
+/** Demo focus stats so the dashboard header is not all zeros. */
+export function buildSeedUserStats() {
+  return {
+    totalFocusPoints: 240,
+    dailyFocusStreak: 5,
+    lastFocusSessionDate: at(-1, 18),
+  };
+}
+
 export function buildSeedProjects(): Project[] {
   return [
     { id: "proj-website", name: "Website Launch", color: "#FF6B6B" },

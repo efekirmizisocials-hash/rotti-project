@@ -184,3 +184,89 @@ export interface ItemHandlers {
     },
   ) => void;
 }
+
+// ==================== FINANCES ====================
+
+export enum FinanceCategory {
+  // Expenses
+  HOUSING = "housing",
+  FOOD = "food",
+  TRANSPORT = "transport",
+  ENTERTAINMENT = "entertainment",
+  UTILITIES = "utilities",
+  SHOPPING = "shopping",
+  HEALTH = "health",
+  EDUCATION = "education",
+  TRAVEL = "travel",
+  SUBSCRIPTIONS = "subscriptions",
+  RENT = "rent",
+  PHONE_BILL = "phone_bill",
+  OTHER_EXPENSE = "other_expense",
+  // Income
+  SALARY = "salary",
+  FREELANCE = "freelance",
+  INVESTMENTS = "investments",
+  GIFTS = "gifts",
+  OTHER_INCOME = "other_income",
+}
+
+export type TransactionType = "income" | "expense";
+
+export interface Transaction {
+  id: string;
+  userId: string;
+  type: TransactionType;
+  amount: number;
+  currency: string;
+  category: FinanceCategory;
+  description: string;
+  date: string;
+  accountId?: string;
+  isRecurring?: boolean;
+  recurringFrequency?: "daily" | "weekly" | "monthly" | "yearly";
+  tags?: string[];
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export type AccountType = "cash" | "bank" | "credit" | "savings" | "investment";
+
+export interface FinanceAccount {
+  id: string;
+  userId: string;
+  name: string;
+  type: AccountType;
+  balance: number;
+  currency: string;
+  color: string;
+  icon?: string;
+  isDefault?: boolean;
+  createdAt: string;
+}
+
+export interface Budget {
+  id: string;
+  userId: string;
+  category: FinanceCategory;
+  amount: number;
+  period: "monthly" | "weekly" | "yearly";
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Subscription {
+  id: string;
+  userId: string;
+  name: string;
+  amount: number;
+  currency: string;
+  billingCycle: "monthly" | "yearly" | "weekly";
+  nextBillingDate: string;
+  category?: string;
+  status: "active" | "cancelled";
+  icon?: string;
+  description?: string;
+  websiteUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
